@@ -2,9 +2,7 @@ let contador = 0;
 let larguraacai = window.innerWidth/10;
 let limite = 51;
 let corAcai;
-
-let passo = 0;
-let passoAltura = window.innerHeight;
+let font;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -13,7 +11,9 @@ function setup() {
 }
 
 function draw() {
-  
+  background(0);
+  textoAcai("Use o botão esquerdo do mouse para bater açai.");
+  noLoop();
 }
 
 function mousePressed() {
@@ -21,35 +21,37 @@ function mousePressed() {
   let contadorB = contador*5;
   
   contador++;
-  print(contador);
-  print(window.innerWidth +'e'+ larguraacai)
-  print('contadorR:'+contadorR + ' ContadorB:'+contadorB)
+  //print(contador);
+  //print(window.innerWidth +'e'+ larguraacai)
+  //print('contadorR:'+contadorR + ' ContadorB:'+contadorB)
   if (contador <=limite) {
+    resizeCanvas(windowWidth, windowHeight);
     background(contadorR,0,contadorB);
-  for(var i=0;i<larguraacai/3;i++){
-    ascii_acai(random(window.innerWidth),random(window.innerHeight));
-  }
-    //contadorR = 150 e contadorB = 250
-}else{
-  //background(corAcai);
-  bateracai();
+  for(var i=0;i<larguraacai/3;i++){  ascii_acai(random(window.innerWidth),random(window.innerHeight));
+    }
+    if(contador == 51){
+      textoAcai("B4t3nd0 @ç@i");
+  }   //contadorR = 150 e contadorB = 250
 }
-  
-}
-
-function acai() {
-   //fill(corAcai);
-  //ellipse(random(window.innerWidth),random(window.innerHeight),larguraacai);
   
 }
 
 function bateracai(){
   noStroke();
   fill(corAcai);
-  rect(0,passo,window.innerWidth,window.innerHeight)
-  if(passo > window.innerHeight){
-    passo = -passoAltura;
-  }
+}
+
+function preload(){
+  font = loadFont('DejaVuSerif.ttf');
+}
+
+function textoAcai(textoInterno){
+  textFont(font);
+  textSize(windowWidth*0.035);
+  textAlign(CENTER,CENTER);
+  fill(255);
+  text(textoInterno ,window.innerWidth/2, window.innerHeight/2);
+  
   
 }
 
